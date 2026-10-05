@@ -2,6 +2,7 @@ import streamlit as st
 import os
 import time
 import pandas as pd
+from dotenv import load_dotenv
 from services.auth.login_wall import render_login_wall
 from services.state.session_defaults import initial_session_defaults
 from services.config.workout_config import EXERCISE_OPTIONS
@@ -15,6 +16,8 @@ from groq import Groq
 from services.coaching.llm import LLMCoach
 from services.coaching.tts import TextToSpeech
 from services.coaching.voice_pipeline import VoicePipeline, autoplay_audio
+
+load_dotenv()
 
   
 def main():
@@ -42,12 +45,16 @@ def main():
             if not api_key and hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
                 api_key = st.secrets["GROQ_API_KEY"]
             
+            if not api_key:
+                raise ValueError("GROQ_API_KEY is not set. Add it to .env or .streamlit/secrets.toml.")
+
             groq_client = Groq(api_key=api_key)
             llm_coach = LLMCoach(groq_client)
             tts = TextToSpeech()
             st.session_state.voice_pipeline = VoicePipeline(llm_coach, tts)
         except Exception as e:
             st.session_state.voice_pipeline = None
+            st.session_state.voice_pipeline_error = str(e)
 
     workout_started = st.session_state.get("workout_started", False)
     
@@ -168,6 +175,9 @@ def main():
     st.title("AI Real-time GYM Coach")
     st.markdown("#### Real-time pose detection with proactive AI voice coaching")
  
+    if st.session_state.get("voice_pipeline_error"):
+        st.warning(f"AI coach unavailable: {st.session_state.voice_pipeline_error}")
+
     if st.session_state.get("audio_to_play"):
         autoplay_audio(st.session_state.audio_to_play)
 
