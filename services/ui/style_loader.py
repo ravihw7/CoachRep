@@ -65,7 +65,17 @@ def inject_webrtc_styles():
                         .MuiButton-text {{
                             border-radius: 0 !important;
                             font-family: 'AdobeClean', sans-serif !important;
-                            letter-spacing: 0.05em !important;
+                            letter-spacing: 0.12em !important;
+                            background: rgba(214, 255, 246, 0.06) !important;
+                            color: #D6FFF6 !important;
+                            border: 1px solid rgba(214, 255, 246, 0.6) !important;
+                            box-shadow: none !important;
+                        }}
+                        .MuiButtonBase-root:hover,
+                        .MuiButton-root:hover {{
+                            background: #D6FFF6 !important;
+                            color: #231651 !important;
+                            box-shadow: 0 0 18px rgba(214, 255, 246, 0.35) !important;
                         }}
                     `;
                     doc.head.appendChild(style);

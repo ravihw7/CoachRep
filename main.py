@@ -189,17 +189,9 @@ def main():
     if not workout_started:
         st.markdown(
             """
-            <div style="
-                border: 10px dashed #444;
-                border-radius: 0px;
-                padding: 48px 32px;
-                text-align: center;
-                color: #888;
-                margin-top: 32px;
-                margin-bottom: 32px;
-            ">
-                <h2 style="color:#ccc; margin-bottom:8px;">👈 Set your workout plan</h2>
-                <p style="font-size:1.05rem;">
+            <div class="cr-empty">
+                <h2>👈 Set your workout plan</h2>
+                <p>
                     Choose your exercise, sets and reps in the sidebar,<br>
                     then click <strong>Start Workout</strong> to activate the camera and AI coach.
                 </p>
