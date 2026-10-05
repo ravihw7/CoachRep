@@ -43,3 +43,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+
+# Local SQLite database (user workout history)
+data.db
