@@ -179,3 +179,12 @@ div[role="menuitem"] {
   background-color: #181D2A !important;
   color: #fff;
 }
+/* Hide Streamlit's top-right toolbar (Share, star, edit, GitHub, Deploy, main menu) */
+[data-testid="stToolbar"],
+[data-testid="stToolbarActions"],
+[data-testid="stAppDeployButton"],
+[data-testid="stMainMenu"],
+.stAppDeployButton,
+#MainMenu {
+    display: none !important;
+}
