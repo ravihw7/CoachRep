@@ -10,6 +10,7 @@ from services.ui.style_loader import load_css, inject_local_font, inject_webrtc_
 from services.persistence.exercise_repository import init_db
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
 from services.vision.exercise_video_processor import VideoProcessorClass
+from services.vision.ice_servers import get_ice_servers
 from services.tracking.metrics import sync_metrics_update
 from services.persistence.exercise_repository import get_users_exercises
 from groq import Groq
@@ -211,7 +212,7 @@ def main():
             key="exercise-analysis",
             mode=WebRtcMode.SENDRECV,
             video_processor_factory=VideoProcessorClass,
-            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+            rtc_configuration={"iceServers": get_ice_servers()},
             media_stream_constraints={
                 "video": True,
                 "audio": False
