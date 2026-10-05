@@ -53,24 +53,73 @@
   font-family: 'AdobeClean', sans-serif !important;
 }
 
+/* Headings wrap their text in inner elements, so the display font must
+   target descendants too or the `.block-container *` rule above wins. */
+.block-container h1,
+.block-container h1 *,
+.block-container h2,
+.block-container h2 *,
+.block-container h3,
+.block-container h3 * {
+  font-family: var(--display) !important;
+}
+
 .block-container h1,
 .block-container h2,
-.block-container h3 {
-  font-family: var(--display) !important;
+.block-container h3,
+.block-container h4 {
   color: var(--mint) !important;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-align: center;
 }
 
 .block-container h1 {
-  font-weight: 800 !important;
-  text-shadow: var(--glow);
+  position: relative;
+  font-size: clamp(1.6rem, 4.2vw, 2.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(214, 255, 246, 0.55), 0 0 32px rgba(35, 22, 81, 0.9);
+  padding-bottom: 1.1rem !important;
+}
+
+/* Glowing underline bar beneath the title */
+.block-container h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 140px;
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--mint), transparent);
+  box-shadow: var(--glow);
+}
+
+.block-container h2 {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Taglines under the title (e.g. the login welcome line) */
+.block-container h3 {
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.22em;
+  line-height: 1.7 !important;
+  text-transform: uppercase;
+  color: var(--mint-60) !important;
 }
 
 .block-container h4 {
   color: var(--mint-60) !important;
   font-weight: 400 !important;
   letter-spacing: 0.04em;
+}
+
+/* Hide the anchor-link icon Streamlit shows next to headings */
+[data-testid="stHeaderActionElements"] {
+  display: none !important;
 }
 
 [data-testid="stSidebar"] h1 {
