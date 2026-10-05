@@ -60,7 +60,7 @@ def main():
     workout_started = st.session_state.get("workout_started", False)
     
     with st.sidebar:
-        st.title("🏋️‍♂️ Apna AI Coach")
+        st.title("🏋️‍♂️ AI Coach")
 
         if st.session_state.username:
             st.caption(f"👤 Login as {st.session_state.username}")
