@@ -179,8 +179,8 @@ div[role="menuitem"] {
   background-color: #181D2A !important;
   color: #fff;
 }
-/* Hide Streamlit's top-right toolbar (Share, star, edit, GitHub, Deploy, main menu) */
-[data-testid="stToolbar"],
+/* Hide Streamlit's top-right toolbar buttons (Share, star, edit, GitHub, Deploy, main menu).
+   Don't hide stToolbar itself: it also holds the expand-sidebar button. */
 [data-testid="stToolbarActions"],
 [data-testid="stAppDeployButton"],
 [data-testid="stMainMenu"],
