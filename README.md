@@ -1,12 +1,34 @@
-# 🏋️ CoachRep: AI Real-time Gym Coach
+<h1 align="center">🏋️ CoachRep — AI Real-time Gym Coach</h1>
 
-> CoachRep watches your form through the webcam, counts every rep, and talks you through each set with real-time AI voice coaching.
+<p align="center">
+  <b>Step in front of your webcam and start lifting — CoachRep counts every rep and coaches your form out loud.</b>
+</p>
+
+<p align="center">
+  Real-time pose detection and AI voice coaching for your workouts, built with Streamlit, MediaPipe and Groq.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit">
+  <img src="https://img.shields.io/badge/MediaPipe-Pose-0097A7?logo=google&logoColor=white" alt="MediaPipe Pose">
+  <img src="https://img.shields.io/badge/Groq-GPT--OSS%2020B-F55036" alt="Groq GPT-OSS 20B">
+  <img src="https://img.shields.io/badge/OpenCV-5C3EE8?logo=opencv&logoColor=white" alt="OpenCV">
+  <img src="https://img.shields.io/badge/WebRTC-333333?logo=webrtc&logoColor=white" alt="WebRTC">
+  <img src="https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white" alt="SQLite">
+</p>
 
 <p align="center">
   <img src="assets/login-screen.png" alt="CoachRep login screen with the futuristic mint and indigo theme" width="720">
 </p>
 
+---
+
+## 📌 Overview
+
 CoachRep is a Streamlit web app that turns your webcam into a personal trainer. **MediaPipe** pose detection tracks your body, exercise-specific detectors count reps and check your form, and an LLM coach (**GPT-OSS 20B on Groq**) turns what it sees into short, spoken coaching cues.
+
+Pick an exercise, set your target sets and reps, and start moving. CoachRep tracks your progress live in the sidebar, calls out form corrections as you go, and saves every session to your workout history.
 
 ---
 
