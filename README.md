@@ -1,4 +1,4 @@
-<h1 align="center">🏋️ CoachRep — AI Real-time Gym Coach</h1>
+<h1 align="center">🏋️ CoachRep — AI Real-time Gym Coach </h1>
 
 <p align="center">
   <b>Step in front of your webcam and start lifting — CoachRep counts every rep and coaches your form out loud.</b>
