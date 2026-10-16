@@ -242,7 +242,6 @@ If you found this project useful, consider giving it a ⭐
 
 ## 🙏 Acknowledgements
 
-- Original project by [Shradha Khapra](https://github.com/shradha-khapra/ai-gym-coach)
 - [MediaPipe](https://developers.google.com/mediapipe) for pose estimation
 - [Groq](https://groq.com) for fast LLM inference
 - [Streamlit](https://streamlit.io) and [streamlit-webrtc](https://github.com/whitphx/streamlit-webrtc)
