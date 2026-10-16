@@ -1,0 +1,61 @@
+# Keeps Streamlit Community Cloud apps from sleeping.
+# Put this file at .github/workflows/keep-awake.yml in any of your GitHub repos.
+name: Keep Streamlit apps awake
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # every 6 hours (apps sleep after 12 hours without traffic)
+  workflow_dispatch:          # lets you run it manually from the Actions tab
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Visit each app and wake it if asleep
+        env:
+          # One URL per line. Add your other Streamlit apps here.
+          APP_URLS: |
+            https://coachrep.streamlit.app/
+        run: |
+          python - <<'EOF'
+          import os, sys
+          from playwright.sync_api import sync_playwright
+
+          urls = os.environ["APP_URLS"].split()
+          failed = False
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              for url in urls:
+                  page = browser.new_page()
+                  try:
+                      page.goto(url, timeout=60_000)
+                      button = page.get_by_role("button", name="Yes, get this app back up!").first
+                      try:
+                          button.wait_for(state="visible", timeout=20_000)  # sleep page renders via JS
+                          asleep = True
+                      except Exception:
+                          asleep = False
+                      if asleep:
+                          button.click()
+                          print(f"WOKE UP: {url}")
+                          page.wait_for_timeout(60_000)  # give it time to boot
+                      else:
+                          page.wait_for_timeout(15_000)  # a real visit counts as traffic
+                          print(f"ALREADY AWAKE: {url}")
+                  except Exception as e:
+                      failed = True
+                      print(f"ERROR on {url}: {e}")
+                  finally:
+                      page.close()
+              browser.close()
+          sys.exit(1 if failed else 0)
+          EOF
