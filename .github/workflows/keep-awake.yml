@@ -25,6 +25,7 @@ jobs:
           # One URL per line. Add your other Streamlit apps here.
           APP_URLS: |
             https://coachrep.streamlit.app/
+            https://ravclass.streamlit.app/
         run: |
           python - <<'EOF'
           import os, sys
